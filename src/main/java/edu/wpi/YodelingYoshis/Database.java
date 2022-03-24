@@ -97,5 +97,11 @@ public class Database {
   }
 
   //TODO NEED SOMETHING TO RETRIEVE FROM DB
+  public String[] select(String tableName){
+    return null;
+  }
 
+  public String[] select(String tableName, String condition){
+    return null;
+  }
 }
