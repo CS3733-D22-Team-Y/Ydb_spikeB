@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class LocationManagerInterface {
   // message to display to show user input options
   final String displayMessage =
-          "==========================================================\n"
+      "==========================================================\n"
           + "1 - Location Information\n"
           + "2 – Change Floor and Type\n"
           + "3 – Enter Location\n"

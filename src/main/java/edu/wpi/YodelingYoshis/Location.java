@@ -27,4 +27,8 @@ public class Location {
     this.longName = longName;
     this.shortName = shortName;
   }
+
+  public Location getClone() {
+    return new Location(nodeID, xCoord, yCoord, floor, building, nodeType, longName, shortName);
+  }
 }
