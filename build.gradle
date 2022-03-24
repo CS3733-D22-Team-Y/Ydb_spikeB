@@ -104,3 +104,7 @@ spotless {
         googleJavaFormat()
     }
 }
+
+run {
+    standardInput = System.in
+}
