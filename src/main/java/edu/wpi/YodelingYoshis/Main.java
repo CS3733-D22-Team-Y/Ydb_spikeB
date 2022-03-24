@@ -3,8 +3,8 @@ package edu.wpi.YodelingYoshis;
 public class Main {
 
   public static void main(String[] args) {
-    LocationManager locationManager = new LocationManager();
-    locationManager.start();
+    LocationManagerInterface locationManagerInterface = new LocationManagerInterface();
+    locationManagerInterface.start();
     //    App.launch(App.class, args);
   }
 }

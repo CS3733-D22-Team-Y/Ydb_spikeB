@@ -3,20 +3,23 @@ package edu.wpi.YodelingYoshis;
 import java.util.Scanner;
 
 /** Manages the user interface for the location manager program. */
-public class LocationManager {
+public class LocationManagerInterface {
   // message to display to show user input options
   final String displayMessage =
-      "1 - Location Information\n"
+          "==========================================================\n"
+          + "1 - Location Information\n"
           + "2 – Change Floor and Type\n"
           + "3 – Enter Location\n"
           + "4 – Delete Location\n"
           + "5 – Save Locations to CSV file\n"
-          + "6 – Exit Program\n";
+          + "6 – Exit Program\n"
+          + "==========================================================\n";
   final String inputMessage = "Please enter a number from 1 to 6."; // Message to prompt user input
   final String inputErrorMessage = "Input error."; // Message for user input error
 
   /** Starts the location manager user interface in the command line/console. */
   public void start() { // starts the interface
+    System.out.println("\n");
     while (true) {
       System.out.println(displayMessage);
       System.out.println(inputMessage);
