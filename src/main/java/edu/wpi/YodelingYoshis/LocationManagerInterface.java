@@ -1,5 +1,6 @@
 package edu.wpi.YodelingYoshis;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 /** Manages the user interface for the location manager program. */
@@ -34,13 +35,12 @@ public class LocationManagerInterface {
           break;
         case 2:
           System.out.print("Enter ID of node to change: ");
-          num = getInput();
-          if (num == -1) continue;
+          String repId = getTextInput();
           System.out.print("Enter new floor value: ");
           String flr = getTextInput();
           System.out.print("Enter new location type: ");
           String locType = getTextInput();
-          if (LocationManagerFunctionality.replaceNodeVals(num, flr, locType)) {
+          if (LocationManagerFunctionality.replaceNodeVals(repId, flr, locType)) {
             System.out.println("Values successfully replaced.");
           } else {
             System.out.println("Values were not replaced.");
@@ -48,9 +48,8 @@ public class LocationManagerInterface {
           break;
         case 3:
           System.out.print("Enter ID of node to add: ");
-          num = getInput();
-          if (num == -1) continue;
-          if (LocationManagerFunctionality.newNode(num)) {
+          String newId = getTextInput();
+          if (LocationManagerFunctionality.newNode(newId)) {
             System.out.println("Node ID " + num + " added.");
           } else {
             System.out.println("No new node added.");
@@ -58,9 +57,8 @@ public class LocationManagerInterface {
           break;
         case 4:
           System.out.print("Enter ID of node to delete: ");
-          num = getInput();
-          if (num == -1) continue;
-          if (LocationManagerFunctionality.deleteNode(num)) {
+          String delId = getTextInput();
+          if (LocationManagerFunctionality.deleteNode(delId)) {
             System.out.println("Node ID " + num + " successfully deleted.");
           } else {
             System.out.println("Deletion was unsuccessful.");
@@ -69,7 +67,7 @@ public class LocationManagerInterface {
         case 5:
           System.out.print("Enter CSV file name: ");
           String csv = getTextInput();
-          if (LocationManagerFunctionality.writeDbToCSV()) {
+          if (LocationManagerFunctionality.writeDbToCSV(csv)) {
             System.out.println("All values successfully written to CSV.");
           } else {
             System.out.println("CSV write failed.");
@@ -110,7 +108,22 @@ public class LocationManagerInterface {
    * @return the string that the user entered
    */
   public String getTextInput() {
+    return getTextInput(false);
+  }
+
+  /**
+   * Gets the user input and returns it as a string, specifying whether to force all caps.
+   *
+   * @param allCaps should this input be capitalized?
+   * @return the string that the user entered
+   */
+  public String getTextInput(boolean allCaps) {
     Scanner scanner = new Scanner(System.in); // Scanner for user input
-    return scanner.next();
+    String in = scanner.next();
+    if (allCaps) {
+      in = in.toUpperCase(Locale.ROOT);
+    }
+
+    return in;
   }
 }
