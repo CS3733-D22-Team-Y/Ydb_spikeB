@@ -116,7 +116,11 @@ public class LocationDataManager {
    * @return true if successful, false otherwise
    */
   public static boolean removeLocation(String nodeID) {
-    locations.remove(nodeID);
+    Location removed = locations.remove(nodeID);
+    if (removed == null) {
+      System.out.println("Location " + nodeID + " not found");
+      return false;
+    }
 
     String sql_string = "DELETE FROM locations WHERE nodeID=" + "'" + nodeID + "'";
 
