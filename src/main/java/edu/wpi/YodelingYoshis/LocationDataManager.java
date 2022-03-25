@@ -1,13 +1,18 @@
 package edu.wpi.YodelingYoshis;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 /** This class manages the location data so that data is mirrored in memory and in the database. */
 public class LocationDataManager {
-  public static HashMap<String, Location> locations = new HashMap<>();
+  private HashMap<String, Location> locations = new HashMap<>();
+  private Connection dbConnection;
 
+  public LocationDataManager(Connection dbConnection) {
+    this.dbConnection = dbConnection;
+  }
   /**
    * Adds a location to the list of locations
    *
@@ -15,7 +20,46 @@ public class LocationDataManager {
    */
   public static void addLocation(Location location) {
     locations.put(location.nodeID, location);
-    // TODO here we will interact with the database to add the location there as well
+
+    String sql_string =
+        "INSERT INTO locations "
+            + "VALUES("
+            + "'"
+            + location.nodeID
+            + "'"
+            + ", "
+            + location.xCoord
+            + ", "
+            + location.yCoord
+            + ", "
+            + "'"
+            + location.floor
+            + "'"
+            + ", "
+            + "'"
+            + location.building
+            + "'"
+            + ", "
+            + "'"
+            + location.nodeType
+            + "'"
+            + ", "
+            + "'"
+            + location.longName
+            + "'"
+            + ", "
+            + "'"
+            + location.shortName
+            + "'"
+            + ")";
+    try {
+      Statement stmt = dbConnection.createStatement();
+      stmt.executeUpdate(sql_string);
+      System.out.println("Executed Successfully");
+    } catch (SQLException e) {
+      System.out.println("Adding Location Failed, check console");
+      e.printStackTrace();
+    }
   }
 
   /**
@@ -56,7 +100,17 @@ public class LocationDataManager {
    */
   public static void removeLocation(String nodeID) {
     locations.remove(nodeID);
-    // TODO here we will interact with the database to remove the location there as well
+
+    String sql_string = "DELETE FROM locations WHERE nodeID=" + "'" + nodeID + "'";
+
+    try {
+      Statement stmt = dbConnection.createStatement();
+      stmt.executeUpdate(sql_string);
+      System.out.println("Executed Successfully");
+    } catch (SQLException e) {
+      System.out.println("Removing Location Failed, check console");
+      e.printStackTrace();
+    }
   }
 
   /**
