@@ -28,6 +28,18 @@ public class Location {
     this.shortName = shortName;
   }
 
+  public Location(String id)
+  {
+    nodeID = id;
+    xCoord = 0;
+    yCoord = 0;
+    floor = "";
+    building = "";
+    nodeType = "";
+    longName = "";
+    shortName = "";
+  }
+
   public Location getClone() {
     return new Location(nodeID, xCoord, yCoord, floor, building, nodeType, longName, shortName);
   }
