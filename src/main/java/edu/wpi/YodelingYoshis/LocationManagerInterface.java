@@ -50,7 +50,7 @@ public class LocationManagerInterface {
           System.out.print("Enter ID of node to add: ");
           String newId = getTextInput();
           if (LocationManagerFunctionality.newNode(newId)) {
-            System.out.println("Node ID " + num + " added.");
+            System.out.println("Node ID " + newId + " added.");
           } else {
             System.out.println("No new node added.");
           }
@@ -59,7 +59,7 @@ public class LocationManagerInterface {
           System.out.print("Enter ID of node to delete: ");
           String delId = getTextInput();
           if (LocationManagerFunctionality.deleteNode(delId)) {
-            System.out.println("Node ID " + num + " successfully deleted.");
+            System.out.println("Node ID " + delId + " successfully deleted.");
           } else {
             System.out.println("Deletion was unsuccessful.");
           }
