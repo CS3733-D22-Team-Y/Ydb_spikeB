@@ -10,8 +10,7 @@ public class Main {
     // do db stuff
 
     test.shutdown_db();
-
-    App.launch(App.class, args);
+    
     LocationManagerInterface locationManagerInterface = new LocationManagerInterface();
     locationManagerInterface.start();
     //    App.launch(App.class, args);
