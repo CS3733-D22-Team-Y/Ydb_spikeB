@@ -7,8 +7,8 @@ import java.util.Map;
 
 /** This class manages the location data so that data is mirrored in memory and in the database. */
 public class LocationDataManager {
-  public static HashMap<String, Location> locations = new HashMap<>();
-  public static Connection dbConnection;
+  private HashMap<String, Location> locations = new HashMap<>();
+  private Connection dbConnection;
 
   public LocationDataManager(Connection dbConnection) {
     this.dbConnection = dbConnection;
