@@ -4,6 +4,7 @@ public class Location {
   String nodeID;
   int xCoord, yCoord;
   int floor;
+  String floor;
   String building;
   String nodeType;
   String longName;
@@ -14,6 +15,7 @@ public class Location {
       int xCoord,
       int yCoord,
       int floor,
+      String floor,
       String building,
       String nodeType,
       String longName,
