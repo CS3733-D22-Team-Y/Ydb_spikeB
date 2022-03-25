@@ -9,6 +9,9 @@ public class Main {
     Database test = new Database("LocationDB");
     Connection db_conn = test.connection;
 
+    LocationDataManager dm = new LocationDataManager(db_conn);
+    dm.cleanTable("locations");
+
     LocationManagerInterface locationManagerInterface = new LocationManagerInterface();
     locationManagerInterface.start();
     //    App.launch(App.class, args);

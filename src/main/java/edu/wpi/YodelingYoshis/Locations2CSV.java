@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /** ExportToCSV takes no parameters returns void creates a CSV file */
-public class Java2CSV {
-  public static void Java2CSV(String fileName) throws IOException {
+public class Locations2CSV {
+  public static void generateCSV(String fileName) throws IOException {
     File csvFile = new File(fileName + ".csv");
     FileWriter fileWriter = new FileWriter(csvFile);
     ArrayList<Location> arrayList = new ArrayList<>();
