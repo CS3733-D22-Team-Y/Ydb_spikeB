@@ -4,9 +4,7 @@ import java.util.ArrayList;
 
 public class LocationManagerFunctionality {
 
-  /**
-   * In-between for displaying the list of database nodes.
-   */
+  /** In-between for displaying the list of database nodes. */
   public static void displayNodes() {
     ArrayList<Location> locs = LocationDataManager.getLocations();
 

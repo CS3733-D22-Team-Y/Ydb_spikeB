@@ -25,7 +25,7 @@ public class ReadIn {
     try {
 
       // creates scanner object
-      Scanner sc = new Scanner(new File("src/main/java/edu/wpi/YodelingYoshis/TowerLocations.csv"));
+      Scanner sc = new Scanner(new File("TowerLocations.csv"));
 
       while (sc.hasNextLine()) // returns a boolean value
       {
