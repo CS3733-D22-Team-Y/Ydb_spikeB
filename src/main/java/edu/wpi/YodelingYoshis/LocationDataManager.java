@@ -19,6 +19,15 @@ public class LocationDataManager {
   }
 
   /**
+   * Updates the local copy of the location list from the database
+   */
+  public static void updateLocationsFromDB(){
+    //erase hashmap
+    locations.clear();
+    //TODO get locations from db and update hashmap
+  }
+
+  /**
    * Adds a list of locations to the current list of locations
    *
    * @param locations the list of locations to add
