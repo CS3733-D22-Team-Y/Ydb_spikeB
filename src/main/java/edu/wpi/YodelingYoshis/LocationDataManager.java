@@ -62,13 +62,11 @@ public class LocationDataManager {
     }
   }
 
-  /**
-   * Updates the local copy of the location list from the database
-   */
-  public static void updateLocationsFromDB(){
-    //erase hashmap
+  /** Updates the local copy of the location list from the database */
+  public static void updateLocationsFromDB() {
+    // erase hashmap
     locations.clear();
-    //TODO get locations from db and update hashmap
+    // TODO get locations from db and update hashmap
   }
 
   /**
