@@ -14,7 +14,7 @@ public class LocationManagerInterface {
           + "5 – Save Locations to CSV file\n"
           + "6 – Exit Program\n"
           + "==========================================================\n";
-  final String inputMessage = "Please enter a number from 1 to 6."; // Message to prompt user input
+  final String inputMessage = "Please enter a number from 1 to 6: "; // Message to prompt user input
   final String inputErrorMessage = "Input error."; // Message for user input error
 
   /** Starts the location manager user interface in the command line/console. */
@@ -22,26 +22,58 @@ public class LocationManagerInterface {
     System.out.println("\n");
     while (true) {
       System.out.println(displayMessage);
-      System.out.println(inputMessage);
+      System.out.print(inputMessage);
       int num = getInput();
       if (num == -1)
         continue; // if the user entered an invalid number, continue to the next iteration of the
       // loop
       switch (num) {
         case 1:
-          // do something
+          LocationManagerFunctionality.displayNodes();
+          System.out.println("End of location data.\n");
           break;
         case 2:
-          // do something
+          System.out.print("Enter ID of node to change: ");
+          num = getInput();
+          if (num == -1) continue;
+          System.out.print("Enter new floor value: ");
+          String flr = getTextInput();
+          System.out.print("Enter new location type: ");
+          String locType = getTextInput();
+          if (LocationManagerFunctionality.replaceNodeVals(num, flr, locType)) {
+            System.out.println("Values successfully replaced.");
+          } else {
+            System.out.println("Values were not replaced.");
+          }
           break;
         case 3:
-          // do something
+          System.out.print("Enter ID of node to add: ");
+          num = getInput();
+          if (num == -1) continue;
+          if (LocationManagerFunctionality.newNode(num)) {
+            System.out.println("Node ID " + num + " added.");
+          } else {
+            System.out.println("No new node added.");
+          }
           break;
         case 4:
-          // do something
+          System.out.print("Enter ID of node to delete: ");
+          num = getInput();
+          if (num == -1) continue;
+          if (LocationManagerFunctionality.deleteNode(num)) {
+            System.out.println("Node ID " + num + " successfully deleted.");
+          } else {
+            System.out.println("Deletion was unsuccessful.");
+          }
           break;
         case 5:
-          // do something
+          System.out.print("Enter CSV file name: ");
+          String csv = getTextInput();
+          if (LocationManagerFunctionality.writeDbToCSV()) {
+            System.out.println("All values successfully written to CSV.");
+          } else {
+            System.out.println("CSV write failed.");
+          }
           break;
         case 6: // exit condition
           System.exit(0); // exit the program
@@ -70,5 +102,15 @@ public class LocationManagerInterface {
       System.out.println(inputErrorMessage);
     }
     return num;
+  }
+
+  /**
+   * Gets the user input and returns it as a string.
+   *
+   * @return the string that the user entered
+   */
+  public String getTextInput() {
+    Scanner scanner = new Scanner(System.in); // Scanner for user input
+    return scanner.next();
   }
 }
