@@ -3,7 +3,6 @@ package edu.wpi.YodelingYoshis;
 public class Location {
   String nodeID;
   int xCoord, yCoord;
-  int floor;
   String floor;
   String building;
   String nodeType;
@@ -14,7 +13,6 @@ public class Location {
       String nodeID,
       int xCoord,
       int yCoord,
-      int floor,
       String floor,
       String building,
       String nodeType,
