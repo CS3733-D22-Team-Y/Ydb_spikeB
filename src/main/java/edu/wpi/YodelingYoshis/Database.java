@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class Database {
   // DB connection
-  protected Connection connection;
+  public static Connection connection;
 
   /**
    * Initializes connection to existing DB
@@ -12,7 +12,7 @@ public class Database {
    * @param db_name DB name to connect to.
    */
   public Database(String db_name) {
-    //Check if apache derby driver is available
+    // Check if apache derby driver is available
     try {
       Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
     } catch (ClassNotFoundException e) {
@@ -21,7 +21,7 @@ public class Database {
       return;
     }
 
-    //Connect to existing DB in root folder
+    // Connect to existing DB in root folder
     try {
       connection = DriverManager.getConnection("jdbc:derby:" + db_name);
 
@@ -47,6 +47,7 @@ public class Database {
 
   /**
    * Initializes a table inside the current connected DB.
+   *
    * @param tableName Stirng, name of the table to be created.
    */
   public void initTable(String tableName) {
@@ -70,6 +71,7 @@ public class Database {
 
   /**
    * Executes PROPERLY FORMATTED SQL String
+   *
    * @param sql_string PROPERLY FORMATTED STRING
    */
   public void execute_cmd(String sql_string) {
