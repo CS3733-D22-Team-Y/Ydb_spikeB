@@ -16,7 +16,7 @@ public class ReadIn {
   }
 
   // function that reads in CSV file and stores all its values in an ArrayList locationList
-  public void readCSV() {
+  public ArrayList<Location> readCSV() {
 
     // ArrayList created to store values from CSV output
     ArrayList<String> csvOutputs = new ArrayList<String>();
@@ -41,7 +41,7 @@ public class ReadIn {
       sc.close(); // closes scanner
     } catch (java.io.FileNotFoundException e) {
       System.out.println("File not found."); // accounts for File not Found
-      return;
+      return locationList;
     }
 
     // adds each location value into the ArrayList
@@ -65,5 +65,7 @@ public class ReadIn {
         locationList.add(iLocation);
       }
     }
+
+    return locationList;
   }
 }

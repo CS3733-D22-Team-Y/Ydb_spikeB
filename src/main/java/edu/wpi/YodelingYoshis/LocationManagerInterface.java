@@ -76,7 +76,7 @@ public class LocationManagerInterface {
           }
           break;
         case 6: // exit condition
-          System.exit(0); // exit the program
+          return; // exit the program
         default: // if the user entered an invalid number, continue to the next iteration of the
           // loop
           System.out.println(inputErrorMessage);
