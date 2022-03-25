@@ -56,7 +56,7 @@ public class Database {
       String sql =
           "CREATE TABLE "
               + tableName
-              + " (nodeID VARCHAR(25) PRIMARY KEY, xcoord INT, ycoord INT, floor INT, building VARCHAR(25), nodeType VARCHAR(25), longName VARCHAR(255), shortName VARCHAR(50))";
+              + " (nodeID VARCHAR(25) PRIMARY KEY, xcoord INT, ycoord INT, floor VARCHAR(25), building VARCHAR(25), nodeType VARCHAR(25), longName VARCHAR(255), shortName VARCHAR(50))";
       stmt.executeUpdate(sql);
       System.out.println("Created tabled named " + tableName);
 
@@ -68,6 +68,7 @@ public class Database {
 
     System.out.println("Connection Successful");
   }
+
 
   /**
    * Executes PROPERLY FORMATTED SQL String

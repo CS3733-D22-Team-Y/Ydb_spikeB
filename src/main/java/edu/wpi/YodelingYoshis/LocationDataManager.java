@@ -1,21 +1,69 @@
 package edu.wpi.YodelingYoshis;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 /** This class manages the location data so that data is mirrored in memory and in the database. */
 public class LocationDataManager {
-  public static HashMap<String, Location> locations = new HashMap<>();
+  private static HashMap<String, Location> locations = new HashMap<>();
+  private static Connection dbConnection;
 
+  public LocationDataManager(Connection dbConnection) {
+    this.dbConnection = dbConnection;
+  }
   /**
    * Adds a location to the list of locations
    *
    * @param location the location to add
+   * @return true if successful, false otherwise
    */
-  public static void addLocation(Location location) {
+  public static boolean addLocation(Location location) {
     locations.put(location.nodeID, location);
-    // TODO here we will interact with the database to add the location there as well
+
+    String sql_string =
+        "INSERT INTO locations "
+            + "VALUES("
+            + "'"
+            + location.nodeID
+            + "'"
+            + ", "
+            + location.xCoord
+            + ", "
+            + location.yCoord
+            + ", "
+            + "'"
+            + location.floor
+            + "'"
+            + ", "
+            + "'"
+            + location.building
+            + "'"
+            + ", "
+            + "'"
+            + location.nodeType
+            + "'"
+            + ", "
+            + "'"
+            + location.longName
+            + "'"
+            + ", "
+            + "'"
+            + location.shortName
+            + "'"
+            + ")";
+    try {
+      Statement stmt = dbConnection.createStatement();
+      stmt.executeUpdate(sql_string);
+      System.out.println("Executed Successfully");
+    } catch (SQLException e) {
+      System.out.println("Adding Location " + location.nodeID + " Failed, check console");
+      e.printStackTrace();
+      return false;
+    }
+
+    return true;
   }
 
   /** Updates the local copy of the location list from the database */
@@ -29,32 +77,60 @@ public class LocationDataManager {
    * Adds a list of locations to the current list of locations
    *
    * @param locations the list of locations to add
+   * @return true if successful, false otherwise
    */
-  public static void addLocations(Location... locations) {
+  public static boolean addLocations(Location... locations) {
+    boolean ok = true;
     for (Location location : locations) {
-      addLocation(location); // uses the addLocation method to avoid redundancy
+      if(!addLocation(location)) // uses the addLocation method to avoid redundancy)
+      {
+        ok = false;
+      }
     }
+
+    return ok;
   }
 
   /**
    * Adds a list of locations to the current list of locations
    *
    * @param locations the arraylist of locations to add
+   * @return true if successful, false otherwise
    */
-  public static void addLocations(ArrayList<Location> locations) {
+  public static boolean addLocations(ArrayList<Location> locations) {
+    boolean ok = true;
     for (Location location : locations) {
-      addLocation(location);
+      if(!addLocation(location)) // uses the addLocation method to avoid redundancy)
+      {
+        ok = false;
+      }
     }
+
+    return ok;
   }
 
   /**
    * Removes a location from the list of locations
    *
    * @param nodeID the nodeID attribute of the Location object to remove
+   * @return true if successful, false otherwise
    */
-  public static void removeLocation(String nodeID) {
+  public static boolean removeLocation(String nodeID) {
     locations.remove(nodeID);
-    // TODO here we will interact with the database to remove the location there as well
+
+    String sql_string = "DELETE FROM locations WHERE nodeID=" + "'" + nodeID + "'";
+
+    try {
+      Statement stmt = dbConnection.createStatement();
+      stmt.executeUpdate(sql_string);
+      System.out.println("Executed Successfully");
+    } catch (SQLException e) {
+      System.out.println("Removing Location Failed, check console");
+      e.printStackTrace();
+      return false;
+    }
+
+    return true;
   }
 
   /**
@@ -87,13 +163,28 @@ public class LocationDataManager {
    *
    * @param nodeID the nodeID attribute of the Location object to replace
    * @param newLocation the new Location object to replace the old one with
+   * @return true if successful, false otherwise
    */
-  public static void replaceLocation(String nodeID, Location newLocation) {
+  public static boolean replaceLocation(String nodeID, Location newLocation) {
     Location location = getLocation(nodeID);
     if (location != null) {
-      removeLocation(nodeID);
-      addLocation(newLocation);
+      if(!removeLocation(nodeID))
+      {
+        return false;
+      }
+      if(!addLocation(newLocation))
+      {
+        System.out.println("WARNING: Replacement failed partway. Re-adding Node " + nodeID + "...");
+        addLocation(location);  // Emergency re-addition of location in the event of incomplete replacement
+        return false;
+      }
     }
+    else
+    {
+      return false;
+    }
+
+    return true;
   }
 
   /**
@@ -108,5 +199,22 @@ public class LocationDataManager {
       locationsCopy.add(value.getClone());
     }
     return locationsCopy;
+  }
+
+  /**
+   * Clears all data from Connected DB + inputted tableName
+   * @param tableName String of table Name to clear
+   */
+  public static void cleanTable(String tableName){
+    String sql_string = "DELETE FROM " + tableName;
+
+    try {
+      Statement stmt = dbConnection.createStatement();
+      stmt.executeUpdate(sql_string);
+      System.out.println("Executed Successfully");
+    } catch (SQLException e) {
+      System.out.println("Clearing table failed, check console");
+      e.printStackTrace();
+    }
   }
 }
