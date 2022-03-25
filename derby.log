@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Fri Mar 25 03:33:41 UTC 2022:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585): instance a816c00e-017f-bf23-1455-0000076029b0 
-on database directory /Users/bjschmitt/Documents/YYY/Xdb_spikeB/LocationDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd 
-Loaded from file:/Users/bjschmitt/Library/Application%20Support/JetBrains/IntelliJIdea2021.3/jdbc-drivers/Apache%20Derby/10.15.2.0/derby-10.15.2.0.jar
-java.vendor=JetBrains s.r.o.
-java.runtime.version=11.0.13+7-b1751.25
-user.dir=/Users/bjschmitt/Documents/YYY/Xdb_spikeB
-os.name=Mac OS X
-os.arch=x86_64
-os.version=12.3
+Fri Mar 25 00:16:53 EDT 2022:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585): instance a816c00e-017f-bf4a-9e73-00000f382f88 
+on database directory C:\Users\jcuno\IdeaProjects\Xdb_spikeB\LocationDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@30946e09 
+Loaded from file:/C:/Users/jcuno/.gradle/caches/modules-2/files-2.1/org.apache.derby/derby/10.15.2.0/b64da6681994f33ba5783ffae55cdb44885b9e70/derby-10.15.2.0.jar
+java.vendor=Microsoft
+java.runtime.version=11.0.14.1+1-LTS
+user.dir=C:\Users\jcuno\IdeaProjects\Xdb_spikeB
+os.name=Windows 11
+os.arch=amd64
+os.version=10.0
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
