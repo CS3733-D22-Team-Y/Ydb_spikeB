@@ -1,5 +1,6 @@
 package edu.wpi.YodelingYoshis;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 /** Manages the user interface for the location manager program. */
@@ -107,7 +108,22 @@ public class LocationManagerInterface {
    * @return the string that the user entered
    */
   public String getTextInput() {
+    return getTextInput(false);
+  }
+
+  /**
+   * Gets the user input and returns it as a string, specifying whether to force all caps.
+   *
+   * @param allCaps should this input be capitalized?
+   * @return the string that the user entered
+   */
+  public String getTextInput(boolean allCaps) {
     Scanner scanner = new Scanner(System.in); // Scanner for user input
-    return scanner.next();
+    String in = scanner.next();
+    if (allCaps) {
+      in = in.toUpperCase(Locale.ROOT);
+    }
+
+    return in;
   }
 }

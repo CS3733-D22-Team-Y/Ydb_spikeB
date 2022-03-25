@@ -82,7 +82,7 @@ public class LocationDataManager {
   public static boolean addLocations(Location... locations) {
     boolean ok = true;
     for (Location location : locations) {
-      if(!addLocation(location)) // uses the addLocation method to avoid redundancy)
+      if (!addLocation(location)) // uses the addLocation method to avoid redundancy)
       {
         ok = false;
       }
@@ -100,7 +100,7 @@ public class LocationDataManager {
   public static boolean addLocations(ArrayList<Location> locations) {
     boolean ok = true;
     for (Location location : locations) {
-      if(!addLocation(location)) // uses the addLocation method to avoid redundancy)
+      if (!addLocation(location)) // uses the addLocation method to avoid redundancy)
       {
         ok = false;
       }
@@ -168,19 +168,16 @@ public class LocationDataManager {
   public static boolean replaceLocation(String nodeID, Location newLocation) {
     Location location = getLocation(nodeID);
     if (location != null) {
-      if(!removeLocation(nodeID))
-      {
+      if (!removeLocation(nodeID)) {
         return false;
       }
-      if(!addLocation(newLocation))
-      {
+      if (!addLocation(newLocation)) {
         System.out.println("WARNING: Replacement failed partway. Re-adding Node " + nodeID + "...");
-        addLocation(location);  // Emergency re-addition of location in the event of incomplete replacement
+        addLocation(
+            location); // Emergency re-addition of location in the event of incomplete replacement
         return false;
       }
-    }
-    else
-    {
+    } else {
       return false;
     }
 
@@ -203,9 +200,10 @@ public class LocationDataManager {
 
   /**
    * Clears all data from Connected DB + inputted tableName
+   *
    * @param tableName String of table Name to clear
    */
-  public static void cleanTable(String tableName){
+  public static void cleanTable(String tableName) {
     String sql_string = "DELETE FROM " + tableName;
 
     try {

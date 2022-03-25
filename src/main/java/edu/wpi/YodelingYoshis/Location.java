@@ -28,8 +28,7 @@ public class Location {
     this.shortName = shortName;
   }
 
-  public Location(String id)
-  {
+  public Location(String id) {
     nodeID = id;
     xCoord = 0;
     yCoord = 0;
