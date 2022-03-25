@@ -5,6 +5,7 @@ build/
 bin/
 .config/
 *.xml
+*.csv
 
 #Mac Specific
 .DS_Store
