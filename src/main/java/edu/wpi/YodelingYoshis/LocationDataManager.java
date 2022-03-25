@@ -163,4 +163,21 @@ public class LocationDataManager {
     }
     return locationsCopy;
   }
+
+  /**
+   * Clears all data from Connected DB + inputted tableName
+   * @param tableName String of table Name to clear
+   */
+  public static void cleanTable(String tableName){
+    String sql_string = "DELETE FROM " + tableName;
+
+    try {
+      Statement stmt = dbConnection.createStatement();
+      stmt.executeUpdate(sql_string);
+      System.out.println("Executed Successfully");
+    } catch (SQLException e) {
+      System.out.println("Clearing table failed, check console");
+      e.printStackTrace();
+    }
+  }
 }
