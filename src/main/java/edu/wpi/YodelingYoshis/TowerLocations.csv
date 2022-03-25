@@ -123,3 +123,30 @@ CHALL010L2,2130,849,L2,Tower,HALL,Hallway 10 Floor L2,Hallway C010L2
 WELEV00LL2,1785,924,L2,Tower,ELEV,Elevator L Floor L2,Elevator LL2
 WELEV00ML2,1820,1280,L2,Tower,ELEV,Elevator M Floor L2,Elevator ML2
 WHALL001L2,1745,1524,L2,Tower,HALL,Hallway Connector 1 Floor L2,Hallway W01L2
+ySTOR001L1,1731,850,L1,Shapiro,STOR,Operating Room Bed Park L1,OR Bed Park L1
+ySTOR00101,1512,929,1,Tower,STOR,West Plaza,Wplaza
+ySTOR00103,1507,788,3,Tower,STOR,Floor 3 Pod B Clean Equipment Storage,B3 Clean Equipment
+ySTOR00203,1507,1059,3,Tower,STOR,Floor 3 Pod C Clean Equipment Storage,C3 Clean Equipment
+yDIRT00103,1535,926,3,Tower,DIRT,Floor 3 Dirty Equipment Storage,03 Dirty Equipment
+yPATI00103,1499,870,3,Tower,PATI,Floor 3 Pod B Patient Room 1,B3 Patient 1
+yPATI00203,1460,845,3,Tower,PATI,Floor 3 Pod B Patient Room 2,B3 Patient 2
+yPATI00303,1433,802,3,Tower,PATI,Floor 3 Pod B Patient Room 3,B3 Patient 3
+yPATI00403,1430,759,3,Tower,PATI,Floor 3 Pod B Patient Room 4,B3 Patient 4
+yPATI00503,1445,716,3,Tower,PATI,Floor 3 Pod B Patient Room 5,B3 Patient 5
+yPATI00603,1477,691,3,Tower,PATI,Floor 3 Pod B Patient Room 6,B3 Patient 6
+yPATI00703,1517,675,3,Tower,PATI,Floor 3 Pod B Patient Room 7,B3 Patient 7
+yPATI00803,1561,681,3,Tower,PATI,Floor 3 Pod B Patient Room 8,B3 Patient 8
+yPATI00903,1600,707,3,Tower,PATI,Floor 3 Pod B Patient Room 9,B3 Patient 9
+yPATI01003,1620,750,3,Tower,PATI,Floor 3 Pod B Patient Room 10,B3 Patient 10
+yPATI01103,1487,971,3,Tower,PATI,Floor 3 Pod C Patient Room 1,C3 Patient 1
+yPATI01203,1435,1012,3,Tower,PATI,Floor 3 Pod C Patient Room 2,C3 Patient 2
+yPATI01303,1412,1053,3,Tower,PATI,Floor 3 Pod C Patient Room 3,C3 Patient 3
+yPATI01403,1415,1123,3,Tower,PATI,Floor 3 Pod C Patient Room 4,C3 Patient 4
+yPATI01503,1433,1154,3,Tower,PATI,Floor 3 Pod C Patient Room 5,C3 Patient 5
+yPATI01603,1487,1195,3,Tower,PATI,Floor 3 Pod C Patient Room 6,C3 Patient 6
+yPATI01703,1523,1203,3,Tower,PATI,Floor 3 Pod C Patient Room 7,C3 Patient 7
+yPATI01803,1493,1183,3,Tower,PATI,Floor 3 Pod C Patient Room 8,C3 Patient 8
+yPATI01903,1523,1152,3,Tower,PATI,Floor 3 Pod C Patient Room 9,C3 Patient 9
+yPATI02003,1545,1085,3,Tower,PATI,Floor 3 Pod C Patient Room 10,C3 Patient 10
+ySTOR00103,1622,1034,3,Tower,STOR,Bed and Recliner Parking North,B&R North
+ySTOR00203,1650,1810,3,Tower,STOR,Bed and Recliner Parking South,B&R South
