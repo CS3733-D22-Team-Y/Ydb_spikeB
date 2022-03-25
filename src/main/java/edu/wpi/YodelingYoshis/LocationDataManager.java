@@ -17,8 +17,9 @@ public class LocationDataManager {
    * Adds a location to the list of locations
    *
    * @param location the location to add
+   * @return true if successful, false otherwise
    */
-  public static void addLocation(Location location) {
+  public static boolean addLocation(Location location) {
     locations.put(location.nodeID, location);
 
     String sql_string =
@@ -57,48 +58,64 @@ public class LocationDataManager {
       stmt.executeUpdate(sql_string);
       System.out.println("Executed Successfully");
     } catch (SQLException e) {
-      System.out.println("Adding Location Failed, check console");
+      System.out.println("Adding Location " + location.nodeID + " Failed, check console");
       e.printStackTrace();
+      return false;
     }
+
+    return true;
   }
 
-  /**
-   * Updates the local copy of the location list from the database
-   */
-  public static void updateLocationsFromDB(){
-    //erase hashmap
+  /** Updates the local copy of the location list from the database */
+  public static void updateLocationsFromDB() {
+    // erase hashmap
     locations.clear();
-    //TODO get locations from db and update hashmap
+    // TODO get locations from db and update hashmap
   }
 
   /**
    * Adds a list of locations to the current list of locations
    *
    * @param locations the list of locations to add
+   * @return true if successful, false otherwise
    */
-  public static void addLocations(Location... locations) {
+  public static boolean addLocations(Location... locations) {
+    boolean ok = true;
     for (Location location : locations) {
-      addLocation(location); // uses the addLocation method to avoid redundancy
+      if(!addLocation(location)) // uses the addLocation method to avoid redundancy)
+      {
+        ok = false;
+      }
     }
+
+    return ok;
   }
 
   /**
    * Adds a list of locations to the current list of locations
    *
    * @param locations the arraylist of locations to add
+   * @return true if successful, false otherwise
    */
-  public static void addLocations(ArrayList<Location> locations) {
+  public static boolean addLocations(ArrayList<Location> locations) {
+    boolean ok = true;
     for (Location location : locations) {
-      addLocation(location);
+      if(!addLocation(location)) // uses the addLocation method to avoid redundancy)
+      {
+        ok = false;
+      }
     }
+
+    return ok;
   }
 
   /**
    * Removes a location from the list of locations
    *
    * @param nodeID the nodeID attribute of the Location object to remove
+   * @return true if successful, false otherwise
    */
-  public static void removeLocation(String nodeID) {
+  public static boolean removeLocation(String nodeID) {
     locations.remove(nodeID);
 
     String sql_string = "DELETE FROM locations WHERE nodeID=" + "'" + nodeID + "'";
@@ -110,7 +127,10 @@ public class LocationDataManager {
     } catch (SQLException e) {
       System.out.println("Removing Location Failed, check console");
       e.printStackTrace();
+      return false;
     }
+
+    return true;
   }
 
   /**
@@ -143,13 +163,28 @@ public class LocationDataManager {
    *
    * @param nodeID the nodeID attribute of the Location object to replace
    * @param newLocation the new Location object to replace the old one with
+   * @return true if successful, false otherwise
    */
-  public static void replaceLocation(String nodeID, Location newLocation) {
+  public static boolean replaceLocation(String nodeID, Location newLocation) {
     Location location = getLocation(nodeID);
     if (location != null) {
-      removeLocation(nodeID);
-      addLocation(newLocation);
+      if(!removeLocation(nodeID))
+      {
+        return false;
+      }
+      if(!addLocation(newLocation))
+      {
+        System.out.println("WARNING: Replacement failed partway. Re-adding Node " + nodeID + "...");
+        addLocation(location);  // Emergency re-addition of location in the event of incomplete replacement
+        return false;
+      }
     }
+    else
+    {
+      return false;
+    }
+
+    return true;
   }
 
   /**
@@ -164,5 +199,22 @@ public class LocationDataManager {
       locationsCopy.add(value.getClone());
     }
     return locationsCopy;
+  }
+
+  /**
+   * Clears all data from Connected DB + inputted tableName
+   * @param tableName String of table Name to clear
+   */
+  public static void cleanTable(String tableName){
+    String sql_string = "DELETE FROM " + tableName;
+
+    try {
+      Statement stmt = dbConnection.createStatement();
+      stmt.executeUpdate(sql_string);
+      System.out.println("Executed Successfully");
+    } catch (SQLException e) {
+      System.out.println("Clearing table failed, check console");
+      e.printStackTrace();
+    }
   }
 }

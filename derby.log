@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Thu Mar 24 22:24:26 EDT 2022:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585): instance a816c00e-017f-bee3-ab56-00000f481388 
+Thu Mar 24 22:46:44 EDT 2022:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585): instance a816c00e-017f-bef8-193b-00000f482f88 
 on database directory /Users/bjschmitt/Documents/YYY/Xdb_spikeB/LocationDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@277050dc 
 Loaded from file:/Users/bjschmitt/Documents/Packages/db-derby-10.15.2.0-bin/lib/derby.jar
 java.vendor=Microsoft
@@ -12,8 +12,8 @@ os.version=12.3
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
-Thu Mar 24 22:24:36 EDT 2022: Shutting down Derby engine
+Thu Mar 24 22:46:53 EDT 2022: Shutting down Derby engine
 ----------------------------------------------------------------
-Thu Mar 24 22:24:36 EDT 2022:
-Shutting down instance a816c00e-017f-bee3-ab56-00000f481388 on database directory /Users/bjschmitt/Documents/YYY/Xdb_spikeB/LocationDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@277050dc 
+Thu Mar 24 22:46:53 EDT 2022:
+Shutting down instance a816c00e-017f-bef8-193b-00000f482f88 on database directory /Users/bjschmitt/Documents/YYY/Xdb_spikeB/LocationDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@277050dc 
 ----------------------------------------------------------------
