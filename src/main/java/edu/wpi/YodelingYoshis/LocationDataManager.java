@@ -56,7 +56,6 @@ public class LocationDataManager {
     try {
       Statement stmt = dbConnection.createStatement();
       stmt.executeUpdate(sql_string);
-      System.out.println("Executed Successfully");
     } catch (SQLException e) {
       System.out.println("Adding Location " + location.nodeID + " Failed, check console");
       e.printStackTrace();
@@ -127,7 +126,6 @@ public class LocationDataManager {
     try {
       Statement stmt = dbConnection.createStatement();
       stmt.executeUpdate(sql_string);
-      System.out.println("Executed Successfully");
     } catch (SQLException e) {
       System.out.println("Removing Location Failed, check console");
       e.printStackTrace();
@@ -213,7 +211,6 @@ public class LocationDataManager {
     try {
       Statement stmt = dbConnection.createStatement();
       stmt.executeUpdate(sql_string);
-      System.out.println("Executed Successfully");
     } catch (SQLException e) {
       System.out.println("Clearing table failed, check console");
       e.printStackTrace();
