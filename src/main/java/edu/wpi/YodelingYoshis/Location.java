@@ -1,6 +1,6 @@
 package edu.wpi.YodelingYoshis;
 
-public class Location {
+public class Location extends DBObject {
   String nodeID;
   int xCoord, yCoord;
   String floor;
@@ -18,6 +18,7 @@ public class Location {
       String nodeType,
       String longName,
       String shortName) {
+    super("location");
     this.nodeID = nodeID;
     this.xCoord = xCoord;
     this.yCoord = yCoord;
@@ -29,6 +30,7 @@ public class Location {
   }
 
   public Location(String id) {
+    super("location");
     nodeID = id;
     xCoord = 0;
     yCoord = 0;
@@ -37,6 +39,42 @@ public class Location {
     nodeType = "";
     longName = "";
     shortName = "";
+  }
+
+  public String getKey() {
+    return nodeID;
+  }
+
+  public String getInsertQuery(){
+    return "VALUES("
+            + "'"
+            + this.nodeID
+            + "'"
+            + ", "
+            + this.xCoord
+            + ", "
+            + this.yCoord
+            + ", "
+            + "'"
+            + this.floor
+            + "'"
+            + ", "
+            + "'"
+            + this.building
+            + "'"
+            + ", "
+            + "'"
+            + this.nodeType
+            + "'"
+            + ", "
+            + "'"
+            + this.longName
+            + "'"
+            + ", "
+            + "'"
+            + this.shortName
+            + "'"
+            + ")";
   }
 
   public Location getClone() {

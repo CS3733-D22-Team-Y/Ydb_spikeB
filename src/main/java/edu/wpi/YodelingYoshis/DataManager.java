@@ -6,58 +6,35 @@ import java.util.HashMap;
 import java.util.Map;
 
 /** This class manages the location data so that data is mirrored in memory and in the database. */
-public class LocationDataManager {
-  private static HashMap<String, Location> locations = new HashMap<>();
+public class DataManager {
+  private static HashMap<String, HashMap<String, DBObject>> data = new HashMap<>();
   private static Connection dbConnection;
+  private static String[] tables;
 
-  public LocationDataManager(Connection dbConnection) {
+  public DataManager(Connection dbConnection, String... tables) {
     this.dbConnection = dbConnection;
+    for (String table : tables) {
+      data.put(table, new HashMap<>());
+    }
+    this.tables = tables;
   }
   /**
    * Adds a location to the list of locations
    *
-   * @param location the location to add
+   * @param object the DBObject to add to the Database
    * @return true if successful, false otherwise
    */
-  public static boolean addLocation(Location location) {
-    locations.put(location.nodeID, location);
+  public static boolean push(DBObject object) {
+    HashMap<String, DBObject> list = data.get(object.getKey());
+    if (list == null) {
+      System.out.println("No table found for " + object.getKey());
+    }
 
-    String sql_string =
-        "INSERT INTO locations "
-            + "VALUES("
-            + "'"
-            + location.nodeID
-            + "'"
-            + ", "
-            + location.xCoord
-            + ", "
-            + location.yCoord
-            + ", "
-            + "'"
-            + location.floor
-            + "'"
-            + ", "
-            + "'"
-            + location.building
-            + "'"
-            + ", "
-            + "'"
-            + location.nodeType
-            + "'"
-            + ", "
-            + "'"
-            + location.longName
-            + "'"
-            + ", "
-            + "'"
-            + location.shortName
-            + "'"
-            + ")";
     try {
       Statement stmt = dbConnection.createStatement();
-      stmt.executeUpdate(sql_string);
+      stmt.executeUpdate("INSERT INTO " + object.tableName + " " + object.getInsertQuery());
     } catch (SQLException e) {
-      System.out.println("Adding Location " + location.nodeID + " Failed, check console");
+      System.out.println("Adding Location " + object.getKey() + " Failed, check console");
       e.printStackTrace();
       return false;
     }
@@ -68,8 +45,10 @@ public class LocationDataManager {
   /** Updates the local copy of the location list from the database */
   public static void updateLocationsFromDB() {
     // erase hashmap
-    locations.clear();
-    // TODO get locations from db and update hashmap
+    for(String table : tables) {
+      data.get(table).clear();
+    }
+    // TODO pull stuff from db and update hashmap
   }
 
   /**
@@ -78,9 +57,9 @@ public class LocationDataManager {
    * @param locations the list of locations to add
    * @return true if successful, false otherwise
    */
-  public static boolean addLocations(Location... locations) {
+  public static boolean addLocations(DBObject... objs) {
     boolean ok = true;
-    for (Location location : locations) {
+    for (DBObject obj : objs) {
       if (!addLocation(location)) // uses the addLocation method to avoid redundancy)
       {
         ok = false;
